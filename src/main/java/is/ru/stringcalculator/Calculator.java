@@ -12,6 +12,9 @@ public class Calculator {
 		else if(text.contains("\n")){
 			return sum(splitNewLine(text));
 		}
+		else if (text.contains("\n,") || text.contains ",\n"){
+			return null;
+		}
 		else
 			return 1;
 	}

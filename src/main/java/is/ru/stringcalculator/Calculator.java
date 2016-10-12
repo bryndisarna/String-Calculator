@@ -6,18 +6,18 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else if(text.contains(",")){
+		else if(text.contains("//")){
+			String delimiter = text.substring(text.indexOf("//") + 2, text.indexOf("\n"));
+			return sum(splitDelimiter(text, delimiter), delimiter);
+		}
+		else if(text.contains(",") || text.contains("\n")){
 			return sum(splitNumbers(text), null);
 		}
-		else if(text.contains("\n")){
-			return sum(splitNewLine(text), null);
-		}
-		else if (text.contains("\n,") || text.contains ",\n"){
-			return null;
-		}
-		else if(text.contains("//")){
-			String delimiter = text.substring(text.indexOf("//") + 2, text.indexOF("\n"));
-			return sum(splitDelimiter(text, delimiter), delimiter);
+		/*else if(text.contains("\n")){
+			return sum(splitNewline(text), null);
+		}*/
+		else if (text.contains("\n,") || text.contains(",\n")){
+			return 0;
 		}
 		else
 			return toInt(text);
@@ -28,20 +28,20 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
-	    return numbers.split(",");
+	    return numbers.split(",|\n");
 	}
 
-	private static int splitNewline(String numbers){
+	/*private static String[] splitNewline(String numbers){
 		return numbers.split("\n");
-	}
+	}*/
 
-	private static int splitDelimiter(String numbers, String delimiter){
+	private static String[] splitDelimiter(String numbers, String delimiter){
 		return numbers.substring(numbers.indexOf("\n") + 1, numbers.length()).split(delimiter);
 	}
       
     private static int sum(String[] numbers, String delimiter){
  	    int total = 0;
- 	    String allNegatives;
+ 	    String allNegatives = null;
 
         for(String number : numbers){
 
@@ -50,7 +50,7 @@ public class Calculator {
 			}
 		    
 		    else if(toInt(number) < 0){
-		    	if(!allNegatives.isEmpty()){
+		    	if(!(allNegatives == "")){
 					
 					allNegatives = allNegatives + "," + number;
 				}
@@ -62,14 +62,13 @@ public class Calculator {
 				throw new IllegalArgumentException(allNegatives);
 			}
 
-			else if(delimiter != null)
-				System.out.println(sum + "(the delimeter is" + delimeter + ")");
+			else if(delimiter != null){
+				System.out.println(total + "(the delimeter is " + delimiter + ")");
+			}
 
 		}
 
 		return total;
     }
-
-
 
 }

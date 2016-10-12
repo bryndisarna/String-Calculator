@@ -13,9 +13,6 @@ public class Calculator {
 		else if(text.contains(",") || text.contains("\n")){
 			return sum(splitNumbers(text), null);
 		}
-		/*else if(text.contains("\n")){
-			return sum(splitNewline(text), null);
-		}*/
 		else if (text.contains("\n,") || text.contains(",\n")){
 			return 0;
 		}
@@ -30,10 +27,6 @@ public class Calculator {
 	private static String[] splitNumbers(String numbers){
 	    return numbers.split(",|\n");
 	}
-
-	/*private static String[] splitNewline(String numbers){
-		return numbers.split("\n");
-	}*/
 
 	private static String[] splitDelimiter(String numbers, String delimiter){
 		return numbers.substring(numbers.indexOf("\n") + 1, numbers.length()).split(delimiter);

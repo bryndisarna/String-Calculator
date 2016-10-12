@@ -33,13 +33,30 @@ public class Calculator {
       
     private static int sum(String[] numbers){
  	    int total = 0;
+ 	    String allNegatives;
+
         for(String number : numbers){
-		    total += toInt(number);
+
+        	if(toInt(number) > 0){
+				 total += toInt(number);
+			}
+		    
+		    else if(toInt(number) < 0){
+		    	if(!allNegatives.isEmpty()){
+					
+					allNegatives = allNegatives + "," + number;
+				}
+				else 
+					allNegatives += number;
+				}
+
+			if(toInt(number) < 0){
+				throw new IllegalArgumentException(allNegatives);
+			}
+
 		}
+
 		return total;
     }
-
-
-
 
 }

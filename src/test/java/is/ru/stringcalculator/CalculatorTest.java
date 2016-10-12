@@ -32,9 +32,9 @@ public class CalculatorTest {
 
     @Test
     public void testNewlineBetweenNumbers(){
-    	assertEquals(6, Calculator.add("1\n 2, 3"));
-    	assertEquals(7, Calculator.add("2, 2\n 3"));
-    	assertEquals(9, Caclulator.add("2, 3\n 4"));
+    	assertEquals(6, Calculator.add("1\n 2,3"));
+    	assertEquals(7, Calculator.add("2,2\n3"));
+    	assertEquals(9, Caclulator.add("2,3\n4"));
     }
 
     @Test
@@ -54,9 +54,15 @@ public class CalculatorTest {
 
     @Test
     public void testBiggerNumbers(){
-    	assertEquals(1003, Calculator.add("1, 2, 1000"));
-    	assertEquals(12, Calculator.add("3, 1002, 4, 5"));
-    	assertEquals(3, Calculator.add("2000, 2, 1"));
+    	assertEquals(1003, Calculator.add("1,2,1000"));
+    	assertEquals(12, Calculator.add("3,1002,4,5"));
+    	assertEquals(3, Calculator.add("2000,2,1"));
+    }
+
+    @Test
+    public void testDifferentDelimiter(){
+    	assertEquals(3, Calculator.add("//k\n1k2"));
+    	assertEquals(3, Calculator.add("//;\n1;2"));
     }
 
 

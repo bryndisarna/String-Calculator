@@ -7,16 +7,20 @@ public class Calculator {
 			return 0;
 		}
 		else if(text.contains(",")){
-			return sum(splitNumbers(text));
+			return sum(splitNumbers(text), null);
 		}
 		else if(text.contains("\n")){
-			return sum(splitNewLine(text));
+			return sum(splitNewLine(text), null);
 		}
 		else if (text.contains("\n,") || text.contains ",\n"){
 			return null;
 		}
+		else if(text.contains("//")){
+			String delimiter = text.substring(text.indexOf("//") + 2, text.indexOF("\n"));
+			return sum(splitDelimiter(text, delimiter), delimiter);
+		}
 		else
-			return 1;
+			return toInt(text);
 	}
 
 	private static int toInt(String number){
@@ -30,8 +34,12 @@ public class Calculator {
 	private static int splitNewline(String numbers){
 		return numbers.split("\n");
 	}
+
+	private static int splitDelimiter(String numbers, String delimiter){
+		return numbers.substring(numbers.indexOf("\n") + 1, numbers.length()).split(delimiter);
+	}
       
-    private static int sum(String[] numbers){
+    private static int sum(String[] numbers, String delimiter){
  	    int total = 0;
  	    String allNegatives;
 
@@ -53,6 +61,9 @@ public class Calculator {
 			if(toInt(number) < 0){
 				throw new IllegalArgumentException(allNegatives);
 			}
+
+			else if(delimiter != null)
+				System.out.println(sum + "(the delimeter is" + delimeter + ")");
 
 		}
 

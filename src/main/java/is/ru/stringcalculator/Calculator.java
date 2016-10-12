@@ -37,7 +37,7 @@ public class Calculator {
 
         for(String number : numbers){
 
-        	if(toInt(number) > 0){
+        	if(toInt(number) > 0 && toInt(number) <= 1000){
 				 total += toInt(number);
 			}
 		    
@@ -58,5 +58,7 @@ public class Calculator {
 
 		return total;
     }
+
+
 
 }

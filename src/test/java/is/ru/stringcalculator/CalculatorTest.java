@@ -52,5 +52,12 @@ public class CalculatorTest {
 
     }
 
+    @Test
+    public void testBiggerNumbers(){
+    	assertEquals(1003, Calculator.add("1, 2, 1000"));
+    	assertEquals(12, Calculator.add("3, 1002, 4, 5"));
+    	assertEquals(3, Calculator.add("2000, 2, 1"));
+    }
+
 
 }
